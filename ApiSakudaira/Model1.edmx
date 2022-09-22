@@ -1,0 +1,184 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SakudairaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Num_Cliente" />
+          </Key>
+          <Property Name="Num_Cliente" Type="int" Nullable="false" />
+          <Property Name="Nom_Cliente" Type="varchar" MaxLength="50" />
+          <Property Name="Ape_Cliente" Type="varchar" MaxLength="50" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Detalle_Plato">
+          <Key>
+            <PropertyRef Name="Num_Plato" />
+          </Key>
+          <Property Name="Num_Plato" Type="int" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="Num_Mesa" />
+          </Key>
+          <Property Name="Num_Mesa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Detalle" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Plato">
+          <Key>
+            <PropertyRef Name="Num_Plato" />
+          </Key>
+          <Property Name="Num_Plato" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_Plato" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Precio" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservacion">
+          <Key>
+            <PropertyRef Name="Num_Reserva" />
+          </Key>
+          <Property Name="Num_Reserva" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Num_Mesa" Type="int" Nullable="false" />
+          <Property Name="Num_Cliente" Type="int" Nullable="false" />
+          <Property Name="Fecha_Reserva" Type="date" />
+        </EntityType>
+        <EntityContainer Name="SakudairaModelStoreContainer">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Detalle_Plato" EntityType="Self.Detalle_Plato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Plato" EntityType="Self.Plato" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Reservacion" EntityType="Self.Reservacion" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SakudairaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Cliente">
+          <Key>
+            <PropertyRef Name="Num_Cliente" />
+          </Key>
+          <Property Name="Num_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Nom_Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Ape_Cliente" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Detalle_Plato">
+          <Key>
+            <PropertyRef Name="Num_Plato" />
+          </Key>
+          <Property Name="Num_Plato" Type="Int32" Nullable="false" />
+          <Property Name="Detalle" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Mesa">
+          <Key>
+            <PropertyRef Name="Num_Mesa" />
+          </Key>
+          <Property Name="Num_Mesa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Detalle" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Plato">
+          <Key>
+            <PropertyRef Name="Num_Plato" />
+          </Key>
+          <Property Name="Num_Plato" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_Plato" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Precio" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Reservacion">
+          <Key>
+            <PropertyRef Name="Num_Reserva" />
+          </Key>
+          <Property Name="Num_Reserva" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Num_Mesa" Type="Int32" Nullable="false" />
+          <Property Name="Num_Cliente" Type="Int32" Nullable="false" />
+          <Property Name="Fecha_Reserva" Type="DateTime" Precision="0" />
+        </EntityType>
+        <EntityContainer Name="SakudairaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+          <EntitySet Name="Detalle_Plato" EntityType="Self.Detalle_Plato" />
+          <EntitySet Name="Mesa" EntityType="Self.Mesa" />
+          <EntitySet Name="Plato" EntityType="Self.Plato" />
+          <EntitySet Name="Reservacion" EntityType="Self.Reservacion" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SakudairaModelStoreContainer" CdmEntityContainer="SakudairaEntities">
+          <EntitySetMapping Name="Cliente">
+            <EntityTypeMapping TypeName="SakudairaModel.Cliente">
+              <MappingFragment StoreEntitySet="Cliente">
+                <ScalarProperty Name="Num_Cliente" ColumnName="Num_Cliente" />
+                <ScalarProperty Name="Nom_Cliente" ColumnName="Nom_Cliente" />
+                <ScalarProperty Name="Ape_Cliente" ColumnName="Ape_Cliente" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Detalle_Plato">
+            <EntityTypeMapping TypeName="SakudairaModel.Detalle_Plato">
+              <MappingFragment StoreEntitySet="Detalle_Plato">
+                <ScalarProperty Name="Num_Plato" ColumnName="Num_Plato" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Mesa">
+            <EntityTypeMapping TypeName="SakudairaModel.Mesa">
+              <MappingFragment StoreEntitySet="Mesa">
+                <ScalarProperty Name="Num_Mesa" ColumnName="Num_Mesa" />
+                <ScalarProperty Name="Detalle" ColumnName="Detalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Plato">
+            <EntityTypeMapping TypeName="SakudairaModel.Plato">
+              <MappingFragment StoreEntitySet="Plato">
+                <ScalarProperty Name="Num_Plato" ColumnName="Num_Plato" />
+                <ScalarProperty Name="Nom_Plato" ColumnName="Nom_Plato" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Reservacion">
+            <EntityTypeMapping TypeName="SakudairaModel.Reservacion">
+              <MappingFragment StoreEntitySet="Reservacion">
+                <ScalarProperty Name="Num_Reserva" ColumnName="Num_Reserva" />
+                <ScalarProperty Name="Num_Mesa" ColumnName="Num_Mesa" />
+                <ScalarProperty Name="Num_Cliente" ColumnName="Num_Cliente" />
+                <ScalarProperty Name="Fecha_Reserva" ColumnName="Fecha_Reserva" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
